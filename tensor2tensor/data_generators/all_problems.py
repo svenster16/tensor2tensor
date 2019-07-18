@@ -50,6 +50,7 @@ MODULES = [
     "tensor2tensor.data_generators.imdb",
     "tensor2tensor.data_generators.lambada",
     "tensor2tensor.data_generators.librispeech",
+    "tensor2tensor.data_generators.lmdp"
     "tensor2tensor.data_generators.lm1b",
     "tensor2tensor.data_generators.lm1b_imdb",
     "tensor2tensor.data_generators.lm1b_mnli",
