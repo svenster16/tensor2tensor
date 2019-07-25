@@ -95,6 +95,16 @@ def decode(estimator, hparams, decode_hp):
     if FLAGS.checkpoint_path and FLAGS.keep_timestamp:
       ckpt_time = os.path.getmtime(FLAGS.checkpoint_path + ".index")
       os.utime(FLAGS.decode_to_file, (ckpt_time, ckpt_time))
+      
+  elif FLAGS.decode_from_folder:
+    folder_path=FLAGS.decode_from_folder
+    for file in os.list(folder_path):
+      decoding.decode_from_file(estimator, file, hparams,
+                                decode_hp, os.path.join(FLAGS.decode_to_file,os.path.basename(file)),
+                                checkpoint_path=FLAGS.checkpoint_path)
+      if FLAGS.checkpoint_path and FLAGS.keep_timestamp:
+        ckpt_time = os.path.getmtime(FLAGS.checkpoint_path + ".index")
+        os.utime(FLAGS.decode_to_file, (ckpt_time, ckpt_time))
   else:
     decoding.decode_from_dataset(
         estimator,
