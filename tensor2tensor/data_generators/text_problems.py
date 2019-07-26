@@ -348,9 +348,9 @@ class Text2TextProblem(problem.Problem):
         problem.DatasetSplit.EVAL: self.dev_filepaths,
         problem.DatasetSplit.TEST: self.test_filepaths,
     }
-
+    
     split_paths = [(split["split"], filepath_fns[split["split"]](
-        data_dir, split["shards"], shuffled=True if split["split"] == problem.DatasetSplit.TEST else shuffled=self.already_shuffled))
+        data_dir, split["shards"], shuffled=True if split["split"] == problem.DatasetSplit.TEST else self.already_shuffled))
                    for split in self.dataset_splits]
     all_paths = []
     for _, paths in split_paths:
