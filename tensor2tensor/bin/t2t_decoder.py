@@ -100,7 +100,7 @@ def decode(estimator, hparams, decode_hp):
       
   elif FLAGS.decode_from_folder:
     folder_path=FLAGS.decode_from_folder
-    for file in os.list(folder_path):
+    for file in os.listdir(folder_path):
       decoding.decode_from_file(estimator, file, hparams,
                                 decode_hp, os.path.join(FLAGS.decode_to_file,os.path.basename(file)),
                                 checkpoint_path=FLAGS.checkpoint_path)
