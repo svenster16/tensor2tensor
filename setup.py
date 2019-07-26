@@ -5,11 +5,11 @@ from setuptools import setup
 
 setup(
     name='tensor2tensor',
-    version='1.13.4',
+    version='1.0',
     description='Tensor2Tensor',
-    author='Google Inc.',
+    author='Sven',
     author_email='no-reply@google.com',
-    url='http://github.com/tensorflow/tensor2tensor',
+    url='https://github.com/svenster16/tensor2tensor.git',
     license='Apache 2.0',
     packages=find_packages(),
     package_data={
