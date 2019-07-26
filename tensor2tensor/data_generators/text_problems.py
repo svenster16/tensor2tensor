@@ -350,7 +350,7 @@ class Text2TextProblem(problem.Problem):
     }
 
     split_paths = [(split["split"], filepath_fns[split["split"]](
-        data_dir, split["shards"], shuffled=self.already_shuffled))
+        data_dir, split["shards"], shuffled=True if split["split"] == problem.DatasetSplit.TEST else shuffled=self.already_shuffled))
                    for split in self.dataset_splits]
     all_paths = []
     for _, paths in split_paths:
