@@ -101,8 +101,8 @@ def decode(estimator, hparams, decode_hp):
   elif FLAGS.decode_from_folder:
     folder_path=FLAGS.decode_from_folder
     for file in os.listdir(folder_path):
-      decoding.decode_from_file(estimator, file, hparams,
-                                decode_hp, os.path.join(FLAGS.decode_to_file,os.path.basename(file)),
+      decoding.decode_from_file(estimator, os.path.join(folder_path,file), hparams,
+                                decode_hp, os.path.join(FLAGS.decode_to_file,file),
                                 checkpoint_path=FLAGS.checkpoint_path)
       if FLAGS.checkpoint_path and FLAGS.keep_timestamp:
         ckpt_time = os.path.getmtime(FLAGS.checkpoint_path + ".index")
