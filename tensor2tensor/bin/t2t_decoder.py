@@ -60,6 +60,8 @@ flags.DEFINE_string("score_file", "", "File to score. Each line in the file "
 flags.DEFINE_bool("decode_in_memory", False, "Decode in memory.")
 flags.DEFINE_bool("disable_grappler_optimizations", False,
                   "Disable Grappler if need be to avoid tensor format errors.")
+flags.DEFINE_bool("decode_from_folder", False,
+                  "Enable decoding of all files in a folder.")
 
 
 def create_hparams():
