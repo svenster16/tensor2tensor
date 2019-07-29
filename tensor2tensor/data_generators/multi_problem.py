@@ -443,7 +443,6 @@ def aggregate_task_losses(hparams,
   # Primary task loss
   loss_num, loss_den = loss(
       logits, feature,
-      lambda x: common_layers.weights_multi_problem_all(x, main_task_id),
       hparams, vocab_size, weights_fn)
 
   loss_val = loss_num / tf.maximum(1.0, loss_den)
