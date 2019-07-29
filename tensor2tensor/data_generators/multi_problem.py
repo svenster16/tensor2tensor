@@ -443,8 +443,7 @@ def aggregate_task_losses(hparams,
   # Primary task loss
   loss_num, loss_den = loss(
       logits, feature,
-      lambda x: common_layers.weights_multi_problem_all(x, main_task_id),
-      hparams, vocab_size)
+      hparams, vocab_size,weights_fn)
 
   loss_val = loss_num / tf.maximum(1.0, loss_den)
   summaries.append([hparams.problem.task_list[0].name+"_loss", loss_val])
@@ -541,8 +540,7 @@ def aggregate_task_lm_losses(hparams,
   for task in hparams.problem.task_list:
     loss_num_, loss_den_ = loss(
         logits, feature,
-        lambda x: common_layers.weights_multi_problem_all(x, task.task_id),  # pylint: disable=cell-var-from-loop
-        hparams, vocab_size)
+        hparams, vocab_size,weights_fn)
 
     loss_num += loss_num_
     loss_den += loss_den_
