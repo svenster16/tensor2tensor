@@ -457,9 +457,9 @@ def aggregate_task_losses(hparams,
   for task in hparams.problem.task_list[1:]:
     # Loss only from the input sequence -- the auxiliary LM loss.
     seq_loss_num, seq_loss_den = loss(
-        logits, feature,
-        lambda x: common_layers.weights_multi_problem_input(x, task.task_id),  # pylint: disable=cell-var-from-loop
-        hparams, vocab_size)
+        logits, feature,  # pylint: disable=cell-var-from-loop
+        hparams, vocab_size,
+        lambda x: common_layers.weights_multi_problem_input(x, task.task_id))
     seq_loss_num *= problem_hparams.loss_multiplier
 
     # Unscaled sequence loss.
@@ -469,9 +469,9 @@ def aggregate_task_losses(hparams,
     if hasattr(task, "num_classes"):
       # Loss only from the classification label.
       label_loss_num, label_loss_den = loss(
-          logits, feature,
-          lambda x: common_layers.weights_multi_problem(x, task.task_id),  # pylint: disable=cell-var-from-loop
-          hparams, vocab_size)
+        logits, feature,  # pylint: disable=cell-var-from-loop
+        hparams, vocab_size,
+        lambda x: common_layers.weights_multi_problem_input(x, task.task_id))
       label_loss_num *= problem_hparams.loss_multiplier
 
       # Unscaled classification label loss.
@@ -491,9 +491,9 @@ def aggregate_task_losses(hparams,
     else:
       # Loss only from the target sequence.
       target_loss_num, target_loss_den = loss(
-          logits, feature,
-          lambda x: common_layers.weights_multi_problem(x, task.task_id),  # pylint: disable=cell-var-from-loop
-          hparams, vocab_size)
+        logits, feature,  # pylint: disable=cell-var-from-loop
+        hparams, vocab_size,
+        lambda x: common_layers.weights_multi_problem_input(x, task.task_id))
       target_loss_num *= problem_hparams.loss_multiplier
 
       # Unscaled target sequence loss.
