@@ -46,6 +46,9 @@ class SentimentIMDB(text_problems.Text2ClassProblem):
     }, {
         "split": problem.DatasetSplit.EVAL,
         "shards": 1,
+    },  {
+        "split": problem.DatasetSplit.TEST,
+        "shards": 1,
     }]
 
   @property
